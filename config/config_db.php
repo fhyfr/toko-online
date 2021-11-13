@@ -10,7 +10,7 @@ $databasePassword = '';
  
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
 
-if ($mysqli == false) {
+if ($mysqli === false) {
   echo "can't connect to database";
 }
  

@@ -2,11 +2,12 @@
 
 <head>
   <?php
-    include('../templates/header.php');
     require('../../config/config_db.php');
+    include('../templates/header.php');
 
     // Check If form submitted, insert form data into users table.
     if(isset($_POST['submit'])) {
+
         $username = $_POST['username'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
@@ -32,9 +33,9 @@
       <hr>
 
       <form action="" method="POST">
-        <?php if(isset($result)) : ?>
+        <?php if(isset($result) && $result === true) : ?>
         <div class="alert alert-success" role="alert">
-          user added successfully
+          successfully created user
         </div>
         <?php endif ?>
 

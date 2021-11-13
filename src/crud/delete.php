@@ -6,7 +6,8 @@ require('../../config/config_db.php');
 $id = $_GET['id'];
  
 // Delete user row from table based on given id
-$delete = mysqli_query($mysqli, "DELETE FROM users WHERE id=$id");
+$query = "DELETE FROM users WHERE id=$id";
+$delete = mysqli_query( $mysqli, $query );
  
 // After delete redirect to Home, so that latest user list will be displayed.
 header("Location:../../index.php?delete=".$delete);

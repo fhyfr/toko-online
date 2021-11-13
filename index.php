@@ -5,6 +5,9 @@ require("./config/config_db.php");
 // Fetch all users data from database
 $query = "SELECT * FROM users ORDER BY created_at DESC";
 $users = mysqli_query($mysqli, $query);
+
+// READ -> OK
+
 ?>
 
 <!doctype html>
@@ -23,14 +26,14 @@ $users = mysqli_query($mysqli, $query);
     <div class="col-8 mx-auto">
       <a class="btn btn-primary mb-4" href="./src/crud/create.php" role="button">Add New User</a>
 
-      <?php if(isset($_GET['delete'])) : ?>
+      <?php if( isset($_GET['delete'])) : ?>
       <div class="alert alert-success" role="alert">
         user deleted successfully
       </div>
       <?php endif ?>
 
       <table class="table">
-        <h3 class="mb-2">Tabel Users</h3>
+        <h2 class="mb-2">Tabel Users</h2>
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -43,13 +46,14 @@ $users = mysqli_query($mysqli, $query);
         <tbody>
           <?php foreach ($users as $key => $user) :?>
           <tr>
-            <th scope="row"><?php echo $key+1?>.</th>
-            <td>@<?php echo $user['username']?></td>
-            <td><?php echo $user['email']?></td>
-            <td>0<?php echo $user['phone']?></td>
+            <th scope="row"><?= $key+1?>.</th>
+            <td>@<?= $user['username']?></td>
+            <td><?= $user['email']?></td>
+            <td>0<?= $user['phone']?></td>
             <td>
-              <a class="btn btn-info" href="./src/crud/edit.php?id=<?= $user['id']?>" role=" button">Edit</a> <a
-                class="btn btn-danger" href="./src/crud/delete.php?id=<?= $user['id']?>" role="button"
+              <a class="btn btn-info" href="./src/crud/edit.php?id=<?= $user['id']?>" role=" button">Edit</a>
+
+              <a class="btn btn-danger" href="./src/crud/delete.php?id=<?= $user['id']?>" role="button"
                 onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
             </td>
           </tr>

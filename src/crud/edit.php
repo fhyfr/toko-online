@@ -7,6 +7,7 @@
 
     $id = $_GET['id'];
     $query = "SELECT * FROM users WHERE id = $id";
+
     $users = mysqli_query($mysqli, $query);
 
     if (isset($_POST['submit'])) {
@@ -34,12 +35,14 @@
       <hr>
 
       <form action="" method="POST">
-        <?php if(isset($result)) : ?>
+        <?php if(isset($result) && $result === true) : ?>
         <div class="alert alert-success" role="alert">
           successfully edit user
         </div>
         <?php endif ?>
+
         <?php foreach($users as $user) : ?>
+
         <div class="form-group">
           <label for="email">Email address</label>
           <input type="email" name="email" class="form-control" id="email" placeholder="enter your email address"
@@ -60,31 +63,13 @@
           <input type="password" name="password" class="form-control" id="password" value="<?= $user['password']?>"
             placeholder="use unique password" required>
         </div>
+
         <?php endforeach ?>
 
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
-
-  <?php
- 
-    // Check If form submitted, insert form data into users table.
-    if(isset($_POST['Submit'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $mobile = $_POST['mobile'];
-        
-        // include database connection file
-        include_once("config.php");
-                
-        // Insert user data into table
-        $result = mysqli_query($mysqli, "INSERT INTO users(name,email,mobile) VALUES('$name','$email','$mobile')");
-        
-        // Show message when user added
-        echo "User added successfully. <a href='index.php'>View Users</a>";
-    }
-    ?>
 </body>
 
 </html>
